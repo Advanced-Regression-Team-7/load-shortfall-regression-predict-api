@@ -26,6 +26,8 @@ from matplotlib.pyplot import axis
 import numpy as np
 import pandas as pd
 import pickle
+import bz2
+import _pickle as cPickle
 import json
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import *
@@ -139,8 +141,10 @@ def load_model(path_to_model:str):
         The pretrained model loaded into memory.
 
     """
+    data = bz2.BZ2File(path_to_model + '.pbz2', 'rb')
+    data = cPickle.load(data)
     
-    return pickle.load(open(path_to_model, 'rb'))
+    return data
 
 
 """ You may use this section (above the make_prediction function) of the python script to implement 
