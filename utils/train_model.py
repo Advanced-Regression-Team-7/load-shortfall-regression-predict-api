@@ -69,19 +69,20 @@ X2 = train.drop('load_shortfall_3h', axis= 1)
 y2 = train['load_shortfall_3h']
 
 # Fit model
-rfr = RandomForestRegressor(n_estimators =200, max_depth=None, max_features='auto', bootstrap=True, random_state =PARAMETER_CONSTANT)
+# rfr = RandomForestRegressor(n_estimators =200, max_depth=None, max_features='auto', bootstrap=True, random_state =PARAMETER_CONSTANT)
 
-
+lm= LinearRegression(normalize=True)
 print ("Training Model...")
 
-rfr.fit(X2,y2)
+lm.fit(X2,y2)
 
 
 # Pickle model for use within our API
-save_path = '../assets/trained-models/load_shortfall_rfr_regression.pkl'
+save_path = '../assets/trained-models/load_shortfall_lm_regression.pkl'
 print (f"Training completed. Saving model to: {save_path}")
 
 
-with bz2.BZ2File(save_path+'.pbz2', 'w') as f: 
-    cPickle.dump(rfr, f)
-
+# with bz2.BZ2File(save_path+'.pbz2', 'w') as f: 
+#     cPickle.dump(rfr, f)
+# pickle.dump(xgb , open(save_path,'wb'))
+pickle.dump(lm, open(save_path,'wb'))

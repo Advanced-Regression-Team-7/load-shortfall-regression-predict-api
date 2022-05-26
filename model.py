@@ -141,10 +141,10 @@ def load_model(path_to_model:str):
         The pretrained model loaded into memory.
 
     """
-    data = bz2.BZ2File(path_to_model + '.pbz2', 'rb')
-    data = cPickle.load(data)
+    # data = bz2.BZ2File(path_to_model + '.pbz2', 'rb')
+    # data = cPickle.load(data)
     
-    return data
+    return pickle.load(open(path_to_model, 'rb'))
 
 
 """ You may use this section (above the make_prediction function) of the python script to implement 
