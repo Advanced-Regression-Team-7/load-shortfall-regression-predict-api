@@ -109,7 +109,7 @@ def _preprocess_data(data):
 
     X = feature_vector_df.drop(['load_shortfall_3h', 'time'], axis=1)
     y = feature_vector_df['load_shortfall_3h']
-    print("shape here )))))))))))" , feature_vector_df.shape)
+    
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 

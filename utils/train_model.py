@@ -70,22 +70,12 @@ y2 = train['load_shortfall_3h']
 
 # Fit model
 rfr = RandomForestRegressor(n_estimators =200, max_depth=None, max_features='auto', bootstrap=True, random_state =PARAMETER_CONSTANT)
-trees = DecisionTreeRegressor(max_depth=15, random_state = PARAMETER_CONSTANT)
 
-# r_forest_model_1 = RandomForestRegressor(n_estimators = 100, random_state = PARAMETER_CONSTANT)
-# xgb_model = xgb.XGBRegressor(base_score=0.7, booster='gbtree', n_estimators=12, learning_rate=0.333, gamma=15, max_depth=5, eval_metric='rmse', random_state=42, reg_alpha=15, reg_lambda=10)
-# lm_regression = LinearRegression(normalize=True)
+
 print ("Training Model...")
-# trees.fit(X2 ,y2)
+
 rfr.fit(X2,y2)
-# rfr_pred_train1 = rfr.predict(X2)
 
-# xgb_model.fit(X2,y2)
-# xgb_pred_train1 = xgb_model.predict(X2)
-
-# r_forest_model_1.fit(X2,y2)
-# r_forest_model_1_pred = r_forest_model_1.predict(X2)
-# lm_regression.fit(y2, X2)
 
 # Pickle model for use within our API
 save_path = '../assets/trained-models/load_shortfall_rfr_regression.pkl'
@@ -94,6 +84,4 @@ print (f"Training completed. Saving model to: {save_path}")
 
 with bz2.BZ2File(save_path+'.pbz2', 'w') as f: 
     cPickle.dump(rfr, f)
-# pickle.dump(xgb , open(save_path,'wb'))
 
-# pickle.dump(lm_regression, open(save_path,'wb'))
