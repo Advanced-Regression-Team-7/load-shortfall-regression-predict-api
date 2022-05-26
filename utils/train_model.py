@@ -95,5 +95,5 @@ print (f"Training completed. Saving model to: {save_path}")
 with bz2.BZ2File(save_path+'.pbz2', 'w') as f: 
     cPickle.dump(rfr, f)
 # pickle.dump(xgb , open(save_path,'wb'))
-pickle.dump(rfr , open(save_path,'wb'))
+
 # pickle.dump(lm_regression, open(save_path,'wb'))
